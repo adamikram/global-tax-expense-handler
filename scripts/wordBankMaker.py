@@ -1,13 +1,13 @@
 import csv
 import os
 
-expenseTypePath = r"C:\Users\Ahmed\OneDrive\Desktop\expenseTypes.txt"
-sampleStatementPdfPath = r"C:\Users\Ahmed\OneDrive\Desktop\sample_statement.csv"
+# expenseTypePath = r"C:\Users\Ahmed\OneDrive\Desktop\expenseTypes.txt"
+sampleStatementPdfPath = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\sample_statement.csv"
 scriptsPath = r"C:\Users\Ahmed\OneDrive\Desktop\scripts"
-# csvToRead = r"C:\Users\Ahmed\OneDrive\Desktop\scripts\expenseTypes_backup.csv")
 csvToRead = r"C:\Users\Ahmed\OneDrive\Desktop\scripts\newCSV.csv"
-allExpensesWords = r"C:\Users\Ahmed\OneDrive\Desktop\manged_cvs\managed.csv"
+allExpensesWords = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\newCSV.csv"
 
+script_data_path = r'C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data'
 class expense_maker:
 	def __init__(self):
 		self.numOfExpenseType = 0
@@ -85,14 +85,26 @@ class expense_maker:
 				largestListLen = len(self.expenseDict[expenseType])
 		return largestListLen
 
-	def inputCatagoryColumnToCsv(self,catagoryList,path):		
-		with open()
+	def inputCatagoryColumnToCsv(self,column,statementPath,newPath):		
+		fileRowList = []
+		with open(statementPath,'r') as csv_input:
+			csv_reader_input = csv.reader(csv_input,delimiter=',')
+			count = 0
+			# print(column)
+			for row in csv_reader_input:
+				row.append(column[count])
+				fileRowList.append(row)
+				count +=1
+		with open(newPath,'w') as csv_output:
+			for row in fileRowList:
+				csv_output.write(f"{', '.join(row)}\n")
+
 	def getCatagorylist(self,path,newStatementPath,newStatementName):		
 		with open(path,mode='r') as csv_file:
 			csv_reader = csv.reader(csv_file,delimiter=',')
 
 			line_count = 0
-			expenseTypeList = []
+			expenseTypeList = ['Expense Type']
 			payeeColumn = 0
 
 			for row in csv_reader:
@@ -102,13 +114,13 @@ class expense_maker:
 				else:
 					# print(row[payeeColumn])
 					exp = self.isValueInDict(row[payeeColumn].lower())
-					print(f'{row[payeeColumn]} is {exp}')
+					# print(f'{row[payeeColumn]} is {exp}')
 					if exp != False:
 						expenseTypeList.append(exp)
 						# print(f'{row[payeeColumn]} is {exp}')
 					else:
 						expenseTypeList.append("Undefined")
-		inputCatagoryColumnToCsv(expenseTypeList,os.path.join(newStatementPath,newStatementName))
+		self.inputCatagoryColumnToCsv(expenseTypeList,path,os.path.join(newStatementPath,newStatementName))
 
 	def isValueInDict(self,value):
 		for key in self.expenseDict.keys():
@@ -161,7 +173,7 @@ expenses = expense_maker()
 expenses.readFile(csvToRead) 
 
 # expenses.getCatagorylist(sampleStatementPdfPath)
-expenses.getCatagorylist(sampleStatementPdfPath,)
+expenses.getCatagorylist(sampleStatementPdfPath,script_data_path,'statementWithColumn.csv')
 
 
 
