@@ -6,8 +6,8 @@ sampleStatementPdfPath = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-ha
 scriptsPath = r"C:\Users\Ahmed\OneDrive\Desktop\scripts"
 csvToRead = r"C:\Users\Ahmed\OneDrive\Desktop\scripts\newCSV.csv"
 allExpensesWords = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\newCSV.csv"
-
 script_data_path = r'C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data'
+
 class expense_maker:
 	def __init__(self):
 		self.numOfExpenseType = 0
@@ -186,7 +186,7 @@ expenses.getCatagorylist(sampleStatementPdfPath,script_data_path,'statementWithC
 
 
 
-# expenses.listAllExpenses()
+expenses.listAllExpenses()
 # print(expenses.isValueInDict('global tax'))
 
 # expList = []

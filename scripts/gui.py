@@ -1,6 +1,6 @@
 import tkinter as tk
 
-class labelList
+# class labelList
 
 
 
