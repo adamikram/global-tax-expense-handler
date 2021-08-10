@@ -1,12 +1,11 @@
 from tkinter import *
-import csv
+from tkinter import filedialog
 from tkinter import messagebox
 import os
+import csv
 sampleStatementPdfPath = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\sample_statement.csv"
 scriptsPath = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data"
-csvToRead = r"C:\Users\Ahmed\OneDrive\Desktop\scripts\newCSV.csv"
-# allExpensesWords = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\newCSV.csv"
-allExpensesWords = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\savedCSVWordbank.csv"
+csv_wordbank = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\savedCSVWordbank.csv"
 script_data_path = r'C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data'
 myTxtFile= r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\managed.csv"
 
@@ -73,8 +72,8 @@ class expense_maker:
 						expenseTypesX.append(cell)
 				else:
 					for expenseType in self.listExpenseTypes():
-						
-						self.addExpense(expenseType,row[column])						
+						if not row[column].isspace():
+							self.addExpense(expenseType,row[column])						
 						column += 1
 					column = 0
 
@@ -141,7 +140,7 @@ class expenseListbox():
 	def __init__(self,surface):
 		self.my_frame = Frame(surface) #underlying frame
 		self.my_scrollbar = Scrollbar(self.my_frame,orient=VERTICAL) #scrollbar
-		self.my_listbox = Listbox(self.my_frame,yscrollcomman=self.my_scrollbar,height=50,width=50) #listbox
+		self.my_listbox = Listbox(self.my_frame,yscrollcomman=self.my_scrollbar,height=50,width=50,exportselection=False) #listbox
 		self.my_scrollbar.config(command=self.my_listbox.yview)
 		self.currentlySelected = ''
 	def render(self):
@@ -153,7 +152,7 @@ class expenseListbox():
 		for item in myList:
 			self.my_listbox.insert(END,item)
 	def bind(self,func):
-		self.my_listbox.bind('<Double-1>', func)
+		self.my_listbox.bind('<<ListboxSelect>>', func)
 	def clear(self):
 		self.my_listbox.delete(0,END)
 	def getSelection(self):
@@ -239,12 +238,12 @@ def csv_ColumnRead(path,columnNum):
     return lineArr
 
 myExpenses = expense_maker()
-myExpenses.readFile(allExpensesWords)
+myExpenses.readFile(csv_wordbank)
 
 
 root = Tk()
 root.title('ListBox Class')
-root.geometry("400x400")
+# root.geometry("400x400")
 
 
 
@@ -304,7 +303,7 @@ expensesListBox.render()
 expenseTypeListBox.bind(updateSecondLb)
 
 #save button
-save_button = Button(expensesFrame,text='SAVE',command=save)
+save_button = Button(expensesFrame,text='Save Word Bank',command=save)
 save_button.pack(side=BOTTOM)
 
 #delete expense button
@@ -319,6 +318,44 @@ add_expense.pack(side=BOTTOM)
 expense_entry = Entry(expensesFrame)
 expense_entry.pack(side=BOTTOM)
 
-# my_frame.add_command(labe="say ")
 
+
+#Undefined List
+undefinedFrame = Frame(root)
+undefinedFrame.pack(side = LEFT)
+
+#label
+undefinedLabel = Label(undefinedFrame,text="Undefined Expenses")
+undefinedLabel.pack(side=TOP)
+
+#undefined expenses listbox
+undefinedListbox = expenseListbox(undefinedFrame)
+undefinedListbox.render()
+
+#function that handles choosing a file
+root.filename=''
+def chooseFile(label):
+	root.filename = filedialog.askopenfilename(initialdir="../all_data/script_data",title="Select A CSV Statement",filetypes=(("csv files", "*.csv"),("all files","*.*")))
+
+	label.config(text = f'File to sort is:{root.filename}')
+
+
+
+#choose statement csv to analyse
+selectedFile = ''
+fileLabel = Label(undefinedFrame,text='File to sort is: ')
+statementFileChooser = Button(undefinedFrame,text='Choose File',command=lambda:chooseFile(fileLabel))
+statementFileChooser.pack(side = BOTTOM)
+
+#show which file is selected
+fileLabel.pack(side=BOTTOM)
+
+
+def addExpenseTypeColumn(file):
+	myExpenses.inputCatagoryColumnToCsv(sampleStatementPdfPath,scriptsPath,f'{os.path.basename(sampleStatementPdfPath)}_sorted')
+	# print(os.path.basename(sampleStatementPdfPath))
+	pass
+#button  to analyse
+sortButton = Button(undefinedFrame,text="Add Expense Type Column",command= lambda:addExpenseTypeColumn(root.filename))
+sortButton.pack(side=BOTTOM)
 root.mainloop()
