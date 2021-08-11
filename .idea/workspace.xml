@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0b530ee-5e96-4fea-8d92-c7a215ef9706" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/all_data/script_data/blankExpenseTypes.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_data/script_data/expenses_types.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_data/script_data/managed.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_data/script_data/newCSV.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/all_data/script_data/savedCSVWordbank.csv" beforeDir="false" afterPath="$PROJECT_DIR$/all_data/script_data/savedCSVWordbank.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/script_data/statementWithColumn.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/listbox.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/listbox.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +26,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager">
     <configuration name="listbox" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">

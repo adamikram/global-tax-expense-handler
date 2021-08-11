@@ -3,8 +3,7 @@ from tkinter import filedialog
 from tkinter import messagebox
 import os
 import csv
-sampleStatementPdfPath = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\sample_statement.csv"
-scriptsPath = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data"
+# sampleStatementPdfPath = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\sample_statement.csv"
 csv_wordbank = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\savedCSVWordbank.csv"
 script_data_path = r'C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data'
 myTxtFile= r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\managed.csv"
@@ -53,7 +52,7 @@ class expense_maker:
 
 		with open(os.path.join(newFilePath,fileName),"w+") as text_file:
 			for line in fList:
-				lineText = ', '.join(line)
+				lineText = ','.join(line)
 				text_file.write(f'{lineText}\n')
 			pass
 
@@ -86,7 +85,7 @@ class expense_maker:
 				largestListLen = len(self.expenseDict[expenseType])
 		return largestListLen
 
-	def inputCatagoryColumnToCsv(self,column,statementPath,newPath):		
+	def inputCatagoryColumnToCsv(self,column,statementPath,newPath):
 		fileRowList = []
 		with open(statementPath,'r') as csv_input:
 			csv_reader_input = csv.reader(csv_input,delimiter=',')
@@ -98,7 +97,7 @@ class expense_maker:
 				count +=1
 		with open(newPath,'w') as csv_output:
 			for row in fileRowList:
-				csv_output.write(f"{', '.join(row)}\n")
+				csv_output.write(f"{','.join(row)}\n")
 
 	def getCatagorylist(self,path,newStatementPath,newStatementName):		
 		with open(path,mode='r') as csv_file:
@@ -107,6 +106,7 @@ class expense_maker:
 			line_count = 0
 			expenseTypeList = ['Expense Type']
 			payeeColumn = 0
+			undefinedExpenses = []
 
 			for row in csv_reader:
 				if line_count == 0:
@@ -118,11 +118,12 @@ class expense_maker:
 					# print(f'{row[payeeColumn]} is {exp}')
 					if exp != False:
 						expenseTypeList.append(exp)
-						# print(f'{row[payeeColumn]} is {exp}')
 					else:
 						expenseTypeList.append("Undefined")
-		self.inputCatagoryColumnToCsv(expenseTypeList,path,os.path.join(newStatementPath,newStatementName))
+						undefinedExpenses.append(row[payeeColumn])
 
+		self.inputCatagoryColumnToCsv(expenseTypeList,path,os.path.join(newStatementPath,newStatementName))
+		return undefinedExpenses
 	def isDictInValue(self,value):
 		for key in self.expenseDict.keys():
 			for expense in self.expenseDict[key]:
@@ -209,7 +210,6 @@ def addExpense_listbox():
 	expense_entry.delete(0,END)
 
 def deleteExpense():
-	
 	selection = expensesListBox.my_listbox.curselection()
 	count = 0
 	if selection:
@@ -224,7 +224,7 @@ def deleteExpense():
 
 
 def save():
-	myExpenses.saveToFile(scriptsPath,'savedCSVWordbank.csv')
+	myExpenses.saveToFile(script_data_path,'savedCSVWordbank.csv')
 
 def csv_ColumnRead(path,columnNum):
     lineArr = []
@@ -336,7 +336,7 @@ undefinedListbox.render()
 root.filename=''
 def chooseFile(label):
 	root.filename = filedialog.askopenfilename(initialdir="../all_data/script_data",title="Select A CSV Statement",filetypes=(("csv files", "*.csv"),("all files","*.*")))
-
+	print(root.filename)
 	label.config(text = f'File to sort is:{root.filename}')
 
 
@@ -351,11 +351,24 @@ statementFileChooser.pack(side = BOTTOM)
 fileLabel.pack(side=BOTTOM)
 
 
-def addExpenseTypeColumn(file):
-	myExpenses.inputCatagoryColumnToCsv(sampleStatementPdfPath,scriptsPath,f'{os.path.basename(sampleStatementPdfPath)}_sorted')
-	# print(os.path.basename(sampleStatementPdfPath))
-	pass
+def addExpenseTypeColumn(file,label,listbox,expenses):
+	if file != '':
+		base = os.path.basename(file)
+		base = base.split(".")[0]
+		base = f'{base}_sorted.csv'
+		undefinedExpenses = myExpenses.getCatagorylist(file,script_data_path,base)
+		listbox.clear()
+		listbox.addList(undefinedExpenses)
+
+		label.config(text='Sorted! Open in Excel to Create a Pivot Table',fg='green')
+
+
+	else:
+		messagebox.showinfo("Error", "Please Select A Valid CSV File")
+
+
+
 #button  to analyse
-sortButton = Button(undefinedFrame,text="Add Expense Type Column",command= lambda:addExpenseTypeColumn(root.filename))
+sortButton = Button(undefinedFrame,text="Add Expense Type Column",command= lambda:addExpenseTypeColumn(root.filename,fileLabel,undefinedListbox,myExpenses))
 sortButton.pack(side=BOTTOM)
 root.mainloop()
