@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0b530ee-5e96-4fea-8d92-c7a215ef9706" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/all_data/script_data/blankExpenseTypes.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_data/script_data/expenses_types.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_data/script_data/managed.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_data/script_data/newCSV.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_data/script_data/savedCSVWordbank.csv" beforeDir="false" afterPath="$PROJECT_DIR$/all_data/script_data/savedCSVWordbank.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/listbox.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/listbox.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/managed.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
