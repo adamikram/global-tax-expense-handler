@@ -1,5 +1,25 @@
 import PyPDF2
 import os
+import tkinter as tk
+
+
+
+
+class mainProgram:
+    def __init__(self):
+        self.root=
+        pass
+
+
+
+
+
+
+
+
+
+
+
 
 directory = r'C:\Users\Ahmed\OneDrive\Desktop\saud_statements\statements_pdf'
 newDir = r'C:\Users\Ahmed\OneDrive\Desktop\saud_statements\pdf_unlocked'
@@ -42,3 +62,5 @@ def unlockPdf(lockedDir, lockedName,blankPath):
 for file in os.listdir(directory):
     unlockPdf(directory,file,blank_page)
     print(f'{file} unlocked')
+
+
