@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0b530ee-5e96-4fea-8d92-c7a215ef9706" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_data/script_data/savedCSVWordbank.csv" beforeDir="false" afterPath="$PROJECT_DIR$/all_data/script_data/savedCSVWordbank.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_data/script_data/statementWithColumn.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/csvMerge.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/gui.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/listbox.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/listbox.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/newCSV.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/pdfMergeScript.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/prototype2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/sample.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/singleFileMerge.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/wordBankMaker.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +30,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/scripts/listbox.py" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>

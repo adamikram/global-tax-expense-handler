@@ -3,10 +3,10 @@ from tkinter import filedialog
 from tkinter import messagebox
 import os
 import csv
-# sampleStatementPdfPath = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\sample_statement.csv"
+
 csv_wordbank = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\savedCSVWordbank.csv"
 script_data_path = r'C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data'
-myTxtFile= r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\managed.csv"
+myTxtFile = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\managed.csv"
 
 class expense_maker:
 	def __init__(self):
@@ -318,8 +318,6 @@ add_expense.pack(side=BOTTOM)
 expense_entry = Entry(expensesFrame)
 expense_entry.pack(side=BOTTOM)
 
-
-
 #Undefined List
 undefinedFrame = Frame(root)
 undefinedFrame.pack(side = LEFT)
@@ -332,14 +330,16 @@ undefinedLabel.pack(side=TOP)
 undefinedListbox = expenseListbox(undefinedFrame)
 undefinedListbox.render()
 
+
+
+
+
 #function that handles choosing a file
 root.filename=''
 def chooseFile(label):
 	root.filename = filedialog.askopenfilename(initialdir="../all_data/script_data",title="Select A CSV Statement",filetypes=(("csv files", "*.csv"),("all files","*.*")))
 	print(root.filename)
 	label.config(text = f'File to sort is:{root.filename}')
-
-
 
 #choose statement csv to analyse
 selectedFile = ''
@@ -361,8 +361,6 @@ def addExpenseTypeColumn(file,label,listbox,expenses):
 		listbox.addList(undefinedExpenses)
 
 		label.config(text='Sorted! Open in Excel to Create a Pivot Table',fg='green')
-
-
 	else:
 		messagebox.showinfo("Error", "Please Select A Valid CSV File")
 
