@@ -30,7 +30,7 @@ class ExpenseType:
     def __init__(self, operating_expense, code, word_bank):
         self.operating_expense = operating_expense
         self.code = code
-        self.wordBank = []
+        self.wordBank = word_bank
         self.expenses = []
 
     def add_keyword(self, keyword):
@@ -50,6 +50,8 @@ class WordBank(CsvParse):
         for column in self.get_headings():
             arr = self.get_column(column)
             code = arr[0]
+
+            del arr[0]
 
             newType = ExpenseType(column, code, arr)
             self.expenseTypes.append(newType)
@@ -78,13 +80,17 @@ class WordBank(CsvParse):
             if type.operating_expense == expenseType:
                 return type.wordBank
 
+    def get_code(self,expenseType):
+        for type in self.expenseTypes:
+            if type.operating_expense == expenseType:
+                # print(type.code)
+                return type.code
 class MainProgram():
     def __init__(self,word_bank_path):
         self.wordBank = WordBank(word_bank_path)
         for expenseType in self.wordBank.get_operating_expenses():
-            # print(expenseType)
-            # print(self.wordBank.get_word_bank(expenseType))
-            pass
+            code = self.wordBank.get_code(expenseType)
+            print(f'{expenseType} --- code is {int(code)}')
 
 
 wordBankPath = r'C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\version_2\data\newWordBank.csv'
