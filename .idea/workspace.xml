@@ -3,16 +3,34 @@
   <component name="ChangeListManager">
     <list default="true" id="e0b530ee-5e96-4fea-8d92-c7a215ef9706" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/csvMerge.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/gui.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/listbox.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/listbox.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/newCSV.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/pdfMergeScript.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/prototype2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/sample.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/singleFileMerge.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/wordBankMaker.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/EXPENSE SCHEDULE 2.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/ExpenseTypes_backup.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/csv_files/sample_statement.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/csv_files/sample_statement2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/manged_cvs/2019_merged.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/manged_cvs/RBC Biz Credit Card Statements_merged.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/manged_cvs/bankandcreditcardstatments_merged.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/manged_cvs/creditcardtransuctionforammaralsiraj_merged.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/manged_cvs/managed.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/manged_cvs/mastercardstatements_merged.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/manged_cvs/rebayantdaccountactivity2021_merged.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/manged_cvs/statementsfortaxes_merged.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/manged_cvs/taxdoccreditcard_merged.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/manged_cvs/visa_merged.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/manged_cvs/visastatements_merged.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/script_data/03869XXX2731-2019Dec27-2020Jan27 Concatenated_sorted.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/script_data/sample_statement.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/script_data/sample_statement_sorted.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_data/script_data/savedCSVWordbank.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/misc_scripts/csvMerge.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/misc_scripts/gui.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/misc_scripts/newCSV.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/misc_scripts/pdfMergeScript.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/misc_scripts/sample.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/misc_scripts/singleFileMerge.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/misc_scripts/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/misc_scripts/wordBankMaker.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/listbox.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +39,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1wVSVWGbU7OF9Utfzpjji7OJU76" />
   <component name="ProjectViewState">
@@ -34,7 +60,7 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.main">
     <configuration name="listbox" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="global-tax-expense-handler" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -56,8 +82,52 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="global-tax-expense-handler" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/version_2/scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/version_2/scripts/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="global-tax-expense-handler" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/version_2/scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/version_2/scripts/main2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.main2" />
         <item itemvalue="Python.listbox" />
       </list>
     </recent_temporary>
