@@ -85,15 +85,11 @@ class WordBank(CsvParse):
             if type.operating_expense == expenseType:
                 # print(type.code)
                 return type.code
-class MainProgram():
-    def __init__(self,word_bank_path):
-        self.wordBank = WordBank(word_bank_path)
-        for expenseType in self.wordBank.get_operating_expenses():
-            code = self.wordBank.get_code(expenseType)
-            print(f'{expenseType} --- code is {int(code)}')
 
 
-wordBankPath = r'C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\version_2\data\newWordBank.csv'
 
-
-myProgram = MainProgram(wordBankPath)
+#
+# wordBankPath = r'C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\version_2\data\newWordBank.csv'
+#
+#
+# myProgram = MainProgram(wordBankPath)
