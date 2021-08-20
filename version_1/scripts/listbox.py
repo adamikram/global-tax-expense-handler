@@ -4,7 +4,7 @@ from tkinter import messagebox
 import os
 import csv
 
-csv_wordbank = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\savedCSVWordbank.csv"
+csv_wordbank = r"C:\Users\adami\Documents\GitHub\global-tax-expense-handler\version_2\data\savedCSVWordbank.csv"
 script_data_path = r'C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data'
 myTxtFile = r"C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\all_data\script_data\managed.csv"
 

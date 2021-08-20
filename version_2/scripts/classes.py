@@ -11,9 +11,11 @@ class CsvParse:
         self.df = pd.read_csv(file_path)
         self.df = self.df.fillna('')
 
+    # gets the heading of a data frame
     def get_headings(self):
         return self.df.columns
 
+    # gets the specified column of a data frame without blanks
     def get_column(self,column):
         # arr = self.df[column].fillna('')
         arr = self.df[column].tolist()
@@ -64,32 +66,43 @@ class WordBank(CsvParse):
         return arr
 
     def remove_keyword(self,expenseType, value):
-        for type in self.expenseTypes:
-            if type.operatingExpense == expenseType:
-                type.remove_keyword(value)
+        for TYPE in self.expenseTypes:
+            if TYPE.operatingExpense == expenseType:
+                TYPE.remove_keyword(value)
                 break
 
     def add_keyword(self,expenseType, value):
-        for type in self.expenseTypes:
-            if type.operatingExpense == expenseType:
-                type.remove_keyword(value)
+        for TYPE in self.expenseTypes:
+            if TYPE.operatingExpense == expenseType:
+                TYPE.remove_keyword(value)
                 break
 
     def get_word_bank(self,expenseType):
-        for type in self.expenseTypes:
-            if type.operating_expense == expenseType:
-                return type.wordBank
+        for TYPE in self.expenseTypes:
+            if TYPE.operating_expense == expenseType:
+                return TYPE.wordBank
 
     def get_code(self,expenseType):
-        for type in self.expenseTypes:
-            if type.operating_expense == expenseType:
+        for TYPE in self.expenseTypes:
+            if TYPE.operating_expense == expenseType:
                 # print(type.code)
-                return type.code
+                return TYPE.code
 
 
 
 #
-# wordBankPath = r'C:\Users\Ahmed\OneDrive\Desktop\global-tax-expense-handler\version_2\data\newWordBank.csv'
+
+
 #
 #
-# myProgram = MainProgram(wordBankPath)
+
+
+if __name__ == "__main__":
+    wordBankPath = r'../data/newWordBank.csv'
+    wordbank = WordBank(wordBankPath)
+
+
+    for expenseType in wordbank.get_operating_expenses():
+        print(wordbank.get_word_bank(expenseType))
+
+        pass
