@@ -33,11 +33,23 @@ class MainApplication(WordBank):
         # self.operatingExpense_Listbox.addList(self.wordBank.get_operating_expenses())
 
         # ---- Operating Expense Column -----
-        operatingExpenses_Label = tk.Label(self.root, text="Operating Expense", pady=10).grid(column=0, row=0)
-        operatingExpense_Listbox = listBox(self.root).grid(column=0, row=1)
-        addOperatingExpense_Button = tk.Button(text="Add an Operating Expense").grid(column=0, row=2)
+        operatingExpenses_Label = tk.Label(self.root, text="Operating Expense", pady=10).grid(column=0, row=0, sticky="EW", padx = 5)
+        operatingExpense_Listbox = listBox(self.root).grid(column=0, row=1, sticky="NS", padx = 5)
+        addOperatingExpense_Button = tk.Button(text="Add Operating Expense").grid(column=0, row=2, sticky="EW",ipady = 10, pady = 5, padx = 5)
+        removeOperating_Expense = tk.Button(text="Remove Operating Expense").grid(column=0, row=3, sticky="EW",ipady = 10, padx = 5)
 
         # ---- Expense Bank Column ----#
+        expenseBank_Label = tk.Label(self.root,text="Expense Bank",pady=10).grid(column=1, row=0, sticky="EW", padx = 5)
+        expenseBank_Listbox = listBox(self.root).grid(column=1, row=1, sticky="NS", padx = 5)
+        addExpense_Button = tk.Button(text="Add Expense Keyword").grid(column=1, row=2, sticky="EW",ipady = 10, pady = 5, padx = 5)
+        removeExpense_Button = tk.Button(text="Remove Expense Keyword").grid(column=1, row=3, sticky="EW",ipady = 10, padx = 5)
+
+        # ---- Undefined Expenses Column ----
+        undefinedExpense_Label = tk.Label(self.root,text="Undefined Expenses",pady=10).grid(column=2, row=0, sticky="EW", padx = 5)
+        expenseBank_Listbox = listBox(self.root).grid(column=2, row=1, sticky="NS", padx = 5)
+        fileSelect_Button = tk.Button(text="Choose File(s)").grid(column=2, row=2, sticky="EW",ipady = 10, pady = 5, padx = 5)
+        consolidate_Button = tk.Button(text="Consolidate Expenses").grid(column=2, row=3, sticky="EW",ipady = 10, pady = 5, padx = 5)
+
 
 
 
