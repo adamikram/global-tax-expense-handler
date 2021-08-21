@@ -42,6 +42,18 @@ class ExpenseType:
         i = self.wordBank.index(keyword)
         del self.wordBank[i]
 
+    def is_code(self,code):
+        if int(self.code) == code:
+            return True
+        else:
+            False
+
+    def is_operating_expense(self,operating_expense):
+        if operating_expense.lower() == self.operating_expense.lower():
+            return True
+        else:
+            False
+
 class WordBank(CsvParse):
     def __init__(self,path):
         CsvParse.__init__(self,path)
@@ -88,13 +100,17 @@ class WordBank(CsvParse):
                 # print(type.code)
                 return TYPE.code
 
+    def is_code(self, code):
+        for TYPE in self.expenseTypes:
+            if TYPE.code == code:
+                return True
+        return False
 
-
-#
-
-
-#
-#
+    def is_operating_expense(self, operating_expense):
+        for TYPE in self.expenseTypes:
+            if TYPE.operating_expense == operating_expense:
+                return True
+        return False
 
 
 if __name__ == "__main__":
