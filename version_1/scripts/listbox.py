@@ -75,8 +75,7 @@ class expense_maker:
 							self.addExpense(expenseType,row[column])						
 						column += 1
 					column = 0
-
-				line_count+=1
+				line_count+= 1
 
 	def largestExpenseList(self):
 		largestListLen = 0
@@ -307,7 +306,7 @@ save_button = Button(expensesFrame,text='Save Word Bank',command=save)
 save_button.pack(side=BOTTOM)
 
 #delete expense button
-delete_expense_button = Button(expensesFrame,text='Delete Expense',command=deleteExpense)
+delete_expense_button = Button(expensesFrame, text='Delete Expense', command=deleteExpense)
 delete_expense_button.pack(side=BOTTOM)
 
 #add expense button
@@ -358,7 +357,7 @@ def addExpenseTypeColumn(file,label,listbox,expenses):
 		base = f'{base}_sorted.csv'
 		undefinedExpenses = myExpenses.getCatagorylist(file,script_data_path,base)
 		listbox.clear()
-		listbox.addList(undefinedExpenses)
+		listbox.add_list(undefinedExpenses)
 
 		label.config(text='Sorted! Open in Excel to Create a Pivot Table',fg='green')
 	else:
