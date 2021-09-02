@@ -1,26 +1,29 @@
+import pandas as pd
+
 from csv_parse import *
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import filedialog
 import os
 
+
 class listBox(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
         tk.Frame.__init__(self, parent, *args, **kwargs)
 
         self.scrollbar = tk.Scrollbar(self, orient=tk.VERTICAL)
-        self.lb = tk.Listbox(self, yscrollcommand=self.scrollbar, height=50, width=40, exportselection=False)
+        self.lb = tk.Listbox(self, yscrollcommand=self.scrollbar, height=40, width=40, exportselection=False)
         self.scrollbar.config(command=self.lb.yview)
         self.scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
         self.lb.pack(fill=tk.Y, expand=True)
 
-    #can add a list using
+    # can add a list using
     def add_list(self, new_list):
-        self.lb.delete(0,tk.END)
+        self.lb.delete(0, tk.END)
         self.lb.insert(tk.END, *new_list)
 
     # configure lb
-    def config(self,**kwargs):
+    def config(self, **kwargs):
         self.lb.config(**kwargs)
 
     # returns a list of the selection of the lb
@@ -29,9 +32,11 @@ class listBox(tk.Frame):
         for index in self.lb.curselection():
             arr.append(self.lb.get(index))
         return arr
-    #binds a command to single clicking lb
-    def bind(self,func):
+
+    # binds a command to single clicking lb
+    def bind(self, func):
         self.lb.bind('<<ListboxSelect>>', func)
+
 
 class AddExpenseType():
     def __init__(self, parent, wordbank, listbox):
@@ -46,8 +51,8 @@ class AddExpenseType():
         self.expense_Label = tk.Label(self.surface, text='Operating Expense', padx=5, justify=tk.LEFT)
         self.code_Label = tk.Label(self.surface, text='Expense Code', padx=5, justify=tk.LEFT)
 
-        self.expense_Label.grid(column=0, row=0, sticky='W',pady = 5)
-        self.code_Label.grid(column=0, row=1, sticky='W', pady = 5)
+        self.expense_Label.grid(column=0, row=0, sticky='W', pady=5)
+        self.code_Label.grid(column=0, row=1, sticky='W', pady=5)
 
         self.expense_Entry = tk.Entry(self.surface)
         self.code_Entry = tk.Entry(self.surface)
@@ -92,10 +97,12 @@ class AddExpenseType():
             self.wordbank.add_expense_type(newOperatingExpense, newCode)
             self.lb.add_list(self.wordbank.get_operating_expenses())
 
-            #clear entries
+            # clear entries
             self.expense_Entry.delete(0, tk.END)
             self.code_Entry.delete(0, tk.END)
             self.surface.destroy()
+
+
 class remove_expense_type:
     def __init__(self, parent, operating_expense, wordbank, listbox):
         self.wordbank = wordbank
@@ -107,7 +114,7 @@ class remove_expense_type:
         self.surface.title('Confirm')
 
         text = tk.Label(self.surface, text=f'Are You Sure You Want to Delete {operating_expense}?')
-        text.grid(column=0, row=0, columnspan=2, sticky='NW', ipady= 8, ipadx=5)
+        text.grid(column=0, row=0, columnspan=2, sticky='NW', ipady=8, ipadx=5)
 
         yes_button = tk.Button(self.surface, text="Yes", padx=5, pady=5, command=self.remove_operating_expense)
         yes_button.grid(column=0, row=1, sticky='EW')
@@ -120,6 +127,7 @@ class remove_expense_type:
         self.surface.destroy()
         self.listbox.add_list(self.wordbank.get_operating_expenses())
 
+
 # add keyword window class
 class AddKeyword:
     def __init__(self, parent, wordbank, operating_expense, listbox):
@@ -129,7 +137,6 @@ class AddKeyword:
         self.operating_expense = operating_expense
         self.wordbank = wordbank
         self.lb = listbox
-
 
         small_font = ('Verdana', 15)
         text = tk.Label(self.root, text='Enter New Keyword:', padx=5, pady=10)
@@ -156,13 +163,27 @@ class AddKeyword:
                 self.lb.add_list(newList)
                 self.root.destroy()
 
+
+class DropDown(tk.Frame):
+    def __init__(self, parent, default, options, *args, **kwargs):
+        tk.Frame.__init__(self, parent, *args, **kwargs)
+        self.clicked = tk.StringVar()
+        self.clicked.set(default)
+        self.drop = tk.OptionMenu(self, self.clicked, *options)
+        self.drop.grid(column=0, row=0, sticky='EW')
+
+    def get(self):
+        return self.clicked.get()
+
+
 # class that holds the wordbank view
 class WordbankView(tk.Frame):
-    def __init__(self, wordbankPath, parent, *args, **kwargs):
-        tk.Frame.__init__(self,parent,*args,**kwargs)
-        self.wordbank = WordBank(wordbankPath)
+    def __init__(self, parent, wordbank, statement, *args, **kwargs):
+        tk.Frame.__init__(self, parent, *args, **kwargs)
+        self.wordbank = wordbank
         self.parent = parent
         self.statementFilepath = ''
+        self.statement = statement
 
         # ---- Operating Expense Column -----
         operatingExpenses_Label = tk.Label(self, text="Operating Expense", pady=10)
@@ -170,7 +191,7 @@ class WordbankView(tk.Frame):
         addOperatingExpense_Button = tk.Button(self, text="Add Operating Expense", command=self.add_expense_type)
         removeOperating_Expense = tk.Button(self, text="Remove Operating Expense", command=self.remove_expense_type)
 
-        operatingExpenses_Label.grid(column=0, row=0,sticky="EW", padx=5)
+        operatingExpenses_Label.grid(column=0, row=0, sticky="EW", padx=5)
         self.operatingExpense_Listbox.grid(column=0, row=1, sticky="NS", padx=5)
         addOperatingExpense_Button.grid(column=0, row=2, sticky="EW", ipady=10, pady=5, padx=5)
         removeOperating_Expense.grid(column=0, row=3, sticky="EW", ipady=10, padx=5)
@@ -182,11 +203,13 @@ class WordbankView(tk.Frame):
         self.expenseBank_Listbox = listBox(self)
         addExpense_Button = tk.Button(self, text="Add Expense Keyword", command=self.add_keyword)
         removeExpense_Button = tk.Button(self, text="Remove Expense Keyword", command=self.remove_keyword)
+        self.save_wordbank_Button = tk.Button(self, text="Save Wordbank", command=self.save_wordbank)
 
         self.expenseBank_Label.grid(column=1, row=0, sticky="EW", padx=5)
         self.expenseBank_Listbox.grid(column=1, row=1, sticky="NS", padx=5)
         addExpense_Button.grid(column=1, row=2, sticky="EW", ipady=10, pady=5, padx=5)
         removeExpense_Button.grid(column=1, row=3, sticky="EW", ipady=10, padx=5)
+        self.save_wordbank_Button.grid(column=1, row=4, sticky="EW", ipady=10, padx=5)
 
         self.operatingExpense_Listbox.bind(self.populate_keywords)  # bind add_keywords to single click
 
@@ -194,19 +217,23 @@ class WordbankView(tk.Frame):
         undefinedExpense_Label = tk.Label(self, text="Undefined Expenses", pady=10)
         self.undefinedExpenseBank_Listbox = listBox(self)
         self.fileSelect_Button = tk.Button(self, text="Choose File", command=self.choose_file)
-        consolidate_Button = tk.Button(self, text="Consolidate Expenses")
+        consolidate_Button = tk.Button(self, text="Consolidate Expenses", command=self.consolidate_expenses)
         #
         undefinedExpense_Label.grid(column=2, row=0, sticky="EW", padx=5)
         self.undefinedExpenseBank_Listbox.grid(column=2, row=1, sticky="NS", padx=5)
         self.fileSelect_Button.grid(column=2, row=2, sticky="EW", ipady=10, pady=5, padx=5)
         consolidate_Button.grid(column=2, row=3, sticky="EW", ipady=10, pady=5, padx=5)
 
-# opens window to add an expense type
+
+
+
+    # opens window to add an expense type
     def add_expense_type(self):
-            addField = AddExpenseType(self,
-                                      self.wordbank,
-                                      self.operatingExpense_Listbox)
-# opens confirmation screen to remove an expense type
+        addField = AddExpenseType(self,
+                                  self.wordbank,
+                                  self.operatingExpense_Listbox)
+
+    # opens confirmation screen to remove an expense type
     def remove_expense_type(self):
         try:
             operating_expense = self.operatingExpense_Listbox.get_selection()[0]
@@ -232,6 +259,7 @@ class WordbankView(tk.Frame):
 
         except IndexError:
             messagebox.showwarning('Error', 'Nothing is selected')
+
     def remove_keyword(self):
         try:
             operating_expense = self.operatingExpense_Listbox.get_selection()[0]
@@ -245,6 +273,63 @@ class WordbankView(tk.Frame):
 
     def choose_file(self):
         self.statementFilepath = filedialog.askopenfilename(title="Select A CSV Statement",
-                                                            filetypes=(("csv files", "*.csv"), ("all files","*.*")))
+                                                            filetypes=(("csv files", "*.csv"), ("all files", "*.*")))
         if self.statementFilepath != '':
             self.fileSelect_Button.config(text=f'Choose File - {os.path.basename(self.statementFilepath)}')
+            self.statement.read(self.statementFilepath)
+
+            self.analyse_dropDown = DropDown(self,
+                                             'Select a Column to be Analysed',
+                                             self.statement.get_headings())
+            self.analyse_dropDown.grid(column=2, row=4)
+
+            self.consolidate_dropDown = DropDown(self,
+                                                 'Select a Numerical Column to be Consolidated',
+                                                 self.statement.get_headings())
+            self.consolidate_dropDown.grid(column=2, row=5)
+
+
+    def consolidate_expenses(self):
+        if self.statementFilepath != '':
+            aColumn = self.analyse_dropDown.get()
+            bColumn = self.consolidate_dropDown.get()
+
+            expenseTypeColumn = []
+            for index, row in self.statement.df.iterrows():
+                inBank = False
+
+                for operating_expense in self.wordbank.get_operating_expenses():
+                    for keyword in self.wordbank.get_word_bank(operating_expense):
+                        if keyword.lower() in row[aColumn]:
+                            expenseTypeColumn.append(operating_expense)
+                            inBank = True
+                            break
+                    if inBank:
+                        break
+                if not inBank:
+                    expenseTypeColumn.append("Undefined")
+
+            self.statement.df["Expense Types"] = expenseTypeColumn
+
+            pivot1 = pd.pivot_table(self.statement.df, index='Expense Types', aggfunc='sum')
+
+            print(pivot1.head(10))
+
+            #update undefined list
+            undefined_df = self.statement.df[self.statement.df['Expense Types'] == 'Undefined']
+            self.undefinedExpenseBank_Listbox.add_list(undefined_df[aColumn].tolist())
+
+
+
+
+
+
+    def save_wordbank(self):
+        dict = {}
+        for operating_expense in self.wordbank.get_operating_expenses():
+            newColumn = [int(self.wordbank.get_code(operating_expense))]
+            newColumn.extend(self.wordbank.get_word_bank(operating_expense))
+            dict[operating_expense] = newColumn
+
+        df = pd.DataFrame({key:pd.Series(value) for key, value in dict.items()}, columns=self.wordbank.get_operating_expenses())
+        df.to_csv(self.wordbank.path, index=False)

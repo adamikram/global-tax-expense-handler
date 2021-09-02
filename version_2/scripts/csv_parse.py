@@ -7,7 +7,10 @@ import pandas as pd
 
 #parses csv files
 class CsvParse:
-    def __init__(self, file_path):
+    def __init__(self, file_path, is_initital=True):
+        if is_initital:
+            self.parse(file_path)
+    def parse(self, file_path):
         self.df = pd.read_csv(file_path)
         self.df = self.df.fillna('')
 
@@ -60,8 +63,14 @@ class ExpenseType:
 class WordBank(CsvParse):
     def __init__(self, path):
         CsvParse.__init__(self, path)
+        self.path = path
         self.expenseTypes = []
         self.populate_expense_types()
+
+    def get_expenses(self, operating_expense):
+        for oType in self.expenseTypes:
+            if oType.operating_expense == operating_expense:
+                print(oType.expenses)
 
     def populate_expense_types(self):
         for column in self.get_headings():
@@ -146,10 +155,14 @@ class WordBank(CsvParse):
         else:
             return False
 
-#class that parses statements
+
+# class that parses statements
 class CsvStatement(CsvParse):
     def __init__(self, path):
-        CsvParse.__init__(path)
+        CsvParse.__init__(self, path, False)
 
-
-# myStatement = CsvStatement()
+    def read(self, path):
+        self.parse(path)
+# file = r"C:\Users\adami\Documents\GitHub\global-tax-expense-handler\version_1\all_data\script_data\sample_statement.csv"
+# myStatement = CsvStatement(file)
+# print(myStatement.get_headings()[5])
