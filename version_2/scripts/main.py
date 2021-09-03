@@ -21,6 +21,8 @@ class MainApplication():
         wordbankFrame = WordbankView(wordbank_tab, self.wordBank, self.statement)
         wordbankFrame.pack()
 
+        gfi_frame = GfiWindow(gfi_tab)
+        gfi_frame.grid(column=0, row=0, sticky="NSEW")
 
 
 

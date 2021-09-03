@@ -1,6 +1,7 @@
 import pandas as pd
 
 from csv_parse import *
+from generate_gfi_window import *
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import filedialog
@@ -295,34 +296,32 @@ class WordbankView(tk.Frame):
             bColumn = self.consolidate_dropDown.get()
 
             expenseTypeColumn = []
+            expenseCodeColumn = []
             for index, row in self.statement.df.iterrows():
                 inBank = False
 
                 for operating_expense in self.wordbank.get_operating_expenses():
                     for keyword in self.wordbank.get_word_bank(operating_expense):
-                        if keyword.lower() in row[aColumn]:
+                        if keyword.lower() in row[aColumn].lower():
                             expenseTypeColumn.append(operating_expense)
+                            expenseCodeColumn.append(self.wordbank.get_code(operating_expense))
                             inBank = True
                             break
                     if inBank:
                         break
                 if not inBank:
                     expenseTypeColumn.append("Undefined")
+                    expenseCodeColumn.append("Undefined")
 
-            self.statement.df["Expense Types"] = expenseTypeColumn
+            self.statement.df["Operating Expense"] = expenseTypeColumn
+            self.statement.df["Code"] = expenseCodeColumn
+            # print(self.statement.df.head(10))
 
-            pivot1 = pd.pivot_table(self.statement.df, index='Expense Types', aggfunc='sum')
-
-            print(pivot1.head(10))
+            pivot1 = pd.pivot_table(self.statement.df, index=("Operating Expense", "Code"), aggfunc='sum')
 
             #update undefined list
-            undefined_df = self.statement.df[self.statement.df['Expense Types'] == 'Undefined']
+            undefined_df = self.statement.df[self.statement.df["Operating Expense"] == 'Undefined']
             self.undefinedExpenseBank_Listbox.add_list(undefined_df[aColumn].tolist())
-
-
-
-
-
 
     def save_wordbank(self):
         dict = {}
