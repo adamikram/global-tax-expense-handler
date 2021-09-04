@@ -14,21 +14,26 @@ class MainApplication():
         wordbank_tab = tk.Frame(notebook)
         gfi_tab = tk.Frame(notebook)
 
-        notebook.add(wordbank_tab, text='Wordbank')
-        notebook.add(gfi_tab, text='Generate GFI')
+
+
         notebook.grid(column=0, row=0, sticky='ne')
 
-        wordbankFrame = WordbankView(wordbank_tab, self.wordBank, self.statement)
+
+
+        gfi_frame = GfiView(gfi_tab)
+        gfi_frame.grid(column=0, row=0, sticky="EW")
+
+        wordbankFrame = WordbankView(wordbank_tab, gfi_frame, self.wordBank, self.statement)
+
+        notebook.add(wordbank_tab, text='Wordbank')
+        notebook.add(gfi_tab, text='Generate GFI')
+
         wordbankFrame.pack()
 
-        gfi_frame = GfiWindow(gfi_tab)
-        gfi_frame.grid(column=0, row=0, sticky="NSEW")
-
-
-
-
-
         self.root.mainloop()
+
+
+
 if __name__ == "__main__":
     wordBankPath = r'../data/newWordBank.csv'
 

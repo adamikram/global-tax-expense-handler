@@ -179,8 +179,9 @@ class DropDown(tk.Frame):
 
 # class that holds the wordbank view
 class WordbankView(tk.Frame):
-    def __init__(self, parent, wordbank, statement, *args, **kwargs):
+    def __init__(self, parent, gfi_window, wordbank, statement, *args, **kwargs):
         tk.Frame.__init__(self, parent, *args, **kwargs)
+        self.gfi_window = gfi_window
         self.wordbank = wordbank
         self.parent = parent
         self.statementFilepath = ''
@@ -319,9 +320,15 @@ class WordbankView(tk.Frame):
 
             pivot1 = pd.pivot_table(self.statement.df, index=("Operating Expense", "Code"), aggfunc='sum')
 
+
             #update undefined list
             undefined_df = self.statement.df[self.statement.df["Operating Expense"] == 'Undefined']
             self.undefinedExpenseBank_Listbox.add_list(undefined_df[aColumn].tolist())
+
+
+            # convert pivot to dataframe
+            flattened = pd.DataFrame(pivot1.to_records())
+            self.gfi_window.update_tree(flattened)
 
     def save_wordbank(self):
         dict = {}
@@ -332,3 +339,4 @@ class WordbankView(tk.Frame):
 
         df = pd.DataFrame({key:pd.Series(value) for key, value in dict.items()}, columns=self.wordbank.get_operating_expenses())
         df.to_csv(self.wordbank.path, index=False)
+
